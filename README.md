@@ -1,35 +1,35 @@
-#  SafeTalk
-### A Secure Chat Application with Encrypted Data Storage
+# A Secure Chat Application with Encrypted Data Storage  
 
-**SafeTalk** is a real-time, encrypted chat application built using **Python sockets**, **AES encryption**, and **MySQL** for secure message storage and private communication between users.
+**SafeTalk** is a real-time, encrypted chat application built using **Python sockets**, **AES encryption**, and **MySQL** for secure message storage and private communication between users.  
 
+---
 
+##  Overview  
+SafeTalk is a **terminal-based chat system** designed to ensure **data privacy** and **secure communication**.  
+It uses **AES (Advanced Encryption Standard)** to encrypt all messages before transmission and securely store them in a **MySQL database**.  
+The application features a **multithreaded server** capable of handling multiple clients simultaneously, enabling smooth and real-time message exchange.  
 
-##  Overview
-SafeTalk is a **terminal-based chat system** designed to ensure data privacy and secure communication.  
-It implements **AES (Advanced Encryption Standard)** to encrypt all messages before transmission and securely stores them in a **MySQL database**.  
-The system uses a **multithreaded server** capable of handling multiple clients simultaneously for smooth, real-time interaction.
+---
 
+##  Features  
+-  AES Encryption (CBC Mode) for secure message transfer  
+-  Real-Time Messaging using Python sockets and threading  
+-  Encrypted message storage in MySQL  
+-  Full-text search and pagination for efficient retrieval  
+-  Modular architecture for scalability and easy maintenance  
 
+---
 
-##  Features
--  **AES Encryption (CBC Mode)** for secure message transfer  
--  **Real-Time Messaging** using Python sockets and threading  
--  **Encrypted Storage** of all messages in MySQL  
--  **Full-Text Search & Pagination** for efficient message retrieval  
--  **Modular Architecture** for easy maintenance and scalability  
+##  Tech Stack  
 
+**Language:** Python  
+**Encryption:** AES (PyCryptodome)  
+**Database:** MySQL  
+**Networking:** Python Socket & Threading  
 
-##  Tech Stack
-| Component      | Technology Used            |
-|----------------|----------------------------|
-| **Language**   | Python                     |
-| **Encryption** | AES (PyCryptodome)         |
-| **Database**   | MySQL                      |
-| **Networking** | Python Socket & Threading  |
+---
 
-
-** How to Run**
+##  How to Run
 1. Step 1: install modules
 `pip install mysql-connector-python pycryptodome`
 
