@@ -1,7 +1,7 @@
 #Step 5: Server Code
 import socket
 import threading
-from secure_chat_db import connect_db, encrypt_message  # Import DB functions
+from SafeTalk.secure_chat_db import connect_db, encrypt_message  # Import DB functions
 
 # Server configuration
 HOST = '127.0.0.1'

@@ -1,6 +1,6 @@
 #Step 4: Store & Retrieve Messages
 
-from secure_chat_db import connect_db, encrypt_message, decrypt_message
+from SafeTalk.secure_chat_db import connect_db, encrypt_message, decrypt_message
 
 # Store Encrypted Messages in MySQL
 def store_message(sender, receiver, message):
