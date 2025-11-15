@@ -1,0 +1,30 @@
+.env# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+
+# Environment variables
+.env
+
+# MySQL dumps
+*.sql
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Editor folders
+.vscode/
+.idea/
+
+# Byte-compiled / cached files
+build/
+dist/
+images/

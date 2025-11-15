@@ -1,42 +1,67 @@
 import socket
 import threading
+import sys
+from dotenv import load_dotenv
+import os
 
-# Client configuration
-HOST = '127.0.0.1'
-PORT = 5555 
+# Load .env
+load_dotenv()
 
-# Create client socket
-client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-client.connect((HOST, PORT))
+HOST = os.getenv("HOST", "127.0.0.1")
+PORT = int(os.getenv("PORT", 5555))
 
-# Ask for a username at the start
-username = input("Enter your username: ")
-client.send(username.encode())  # Sending username to server
 
-# Function to receive messages
-def receive_messages():
-    while True:
-        try:
-            msg = client.recv(1024).decode()
-            if msg:
-                print(msg)
-        except:
-            print("Disconnected from server.")
-            client.close()
-            break
+def safe_print(msg):
+    """Print incoming messages without breaking input prompt."""
+    sys.stdout.write("\r" + " " * 80 + "\r")  # Clear line
+    print(msg)
+    sys.stdout.write("Receiver: ")
+    sys.stdout.flush()
 
-# Start receiving messages in a separate thread
-threading.Thread(target=receive_messages, daemon=True).start()
 
-# Sending messages loop
-while True:
-    receiver = input("Enter recipient username: ")
-    message = input("Enter message: ")
-    
-    if receiver and message:  # Ensure inputs are not empty
-        full_message = f"{username}:{receiver}:{message}"  # Format message as "sender:receiver:message"
-        client.send(full_message.encode())  # Send message to server
-    else:
-        print("Both receiver and message must be provided!")
+def receive_messages(sock):
+    try:
+        while True:
+            data = sock.recv(4096)
+            if not data:
+                safe_print("Server closed connection.")
+                break
 
-        
+            msg = data.decode("utf-8")
+            safe_print(msg)
+
+    except Exception:
+        safe_print("Disconnected from server.")
+    finally:
+        sock.close()
+
+
+def main():
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sock.connect((HOST, PORT))
+
+    username = input("Enter your username: ").strip()
+    sock.send(username.encode("utf-8"))
+
+    threading.Thread(target=receive_messages, args=(sock,), daemon=True).start()
+
+    try:
+        while True:
+            receiver = input("Receiver: ").strip()
+            message = input("Message: ").strip()
+
+            if not receiver or not message:
+                print("Both receiver and message required.\n")
+                continue
+
+            full = f"{username}:{receiver}:{message}"
+            sock.send(full.encode("utf-8"))
+
+    except KeyboardInterrupt:
+        print("\nExiting client.")
+    finally:
+        sock.close()
+
+
+if __name__ == "__main__":
+    main()

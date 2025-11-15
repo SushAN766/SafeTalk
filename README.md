@@ -1,4 +1,4 @@
-# A Secure Chat Application with Encrypted Data Storage  
+# SafeTalk 
 
 **SafeTalk** is a real-time, encrypted chat application built using **Python sockets**, **AES encryption**, and **MySQL** for secure message storage and private communication between users.  
 
