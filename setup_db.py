@@ -1,9 +1,7 @@
-# setup_db.py
 import mysql.connector
 from dotenv import load_dotenv
 import os
 
-# Load environment variables from .env file
 load_dotenv()
 
 DB_HOST = os.getenv("DB_HOST")
@@ -24,7 +22,6 @@ cursor = conn.cursor()
 cursor.execute(f"CREATE DATABASE IF NOT EXISTS {DB_NAME}")
 cursor.execute(f"USE {DB_NAME}")
 
-# Users table for login system
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -34,7 +31,6 @@ CREATE TABLE IF NOT EXISTS users (
 )
 """)
 
-# Messages table
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS messages (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -45,7 +41,6 @@ CREATE TABLE IF NOT EXISTS messages (
 )
 """)
 
-# Index for faster inbox lookups
 cursor.execute("""
 SHOW INDEX FROM messages WHERE Key_name = 'idx_receiver'
 """)

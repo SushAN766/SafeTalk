@@ -4,7 +4,6 @@ import sys
 from dotenv import load_dotenv
 import os
 
-# Load .env
 load_dotenv()
 
 HOST = os.getenv("HOST", "127.0.0.1")

@@ -1,4 +1,3 @@
-# store_retrieve.py
 from secure_chat_db import connect_db, decrypt_message
 
 def get_messages_for_receiver(receiver, limit=10, offset=0):
